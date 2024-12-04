@@ -1,0 +1,174 @@
+<style>
+    /* General Body Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 40px;
+        color: #333;
+    }
+    
+    /* Header Styling */
+    h1 {
+        font-size: 36px;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;  /* Ensure border-radius works with table */
+    }
+    
+    table th, table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    table th {
+        background-color: #2980b9;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    table tr:hover {
+        background-color: #dfe6e9;
+    }
+    
+    /* Checkbox Styling */
+    input[type="checkbox"] {
+        transform: scale(1.3);
+        cursor: pointer;
+    }
+    
+    /* Button Links */
+    a {
+        color: white;
+        padding: 10px 14px;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 6px 3px;
+        border-radius: 5px;
+        display: inline-block;
+        transition: background-color 0.3s, transform 0.2s;
+        text-align: center;
+    }
+    
+    /* Button Colors */
+    a.view-btn { background-color: #3498db; }  /* Blue for view */
+    a.edit-btn { background-color: #f39c12; }  /* Orange for edit */
+    a.delete-btn { background-color: #e74c3c; } /* Red for delete */
+    a.add-btn { background-color: #2ecc71; }   /* Green for add */
+    
+    /* Hover Effects */
+    a.view-btn:hover { background-color: #2980b9; }
+    a.edit-btn:hover { background-color: #d68910; }
+    a.delete-btn:hover { background-color: #c0392b; }
+    a.add-btn:hover { background-color: #27ae60; }
+    
+    a:hover {
+        transform: translateY(-2px);
+    }
+    
+    /* Add Study Button */
+    .add-study-btn {
+        display: block;
+        width: max-content;
+        margin: 20px auto;
+        padding: 12px 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+        table tr {
+            margin-bottom: 15px;
+        }
+        table th {
+            display: none;  /* Hide table headers */
+        }
+        table td {
+            display: block;
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+        }
+        table td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+        }
+    }
+    
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main View</title>
+</head>
+<body>
+    <h1>Study Management</h1>
+
+    <table border ="2">
+        <tr>
+            <th><input type="checkbox" id="selectAll"></th>
+            <th>Study Name</th>
+            <th>Study Phase</th>
+            <th>Sponsor Name</th>
+            <th>Study Description</th>
+            {% comment %} <th>file_upload</th> {% endcomment %}
+            <th>Actions</th>
+            <th>Remove</th>
+
+        </tr>
+        {% for study in studies %}
+        <tr>
+            <td>
+                <input type="checkbox" class="studyCheckbox" id="{{ study.id }}">
+            </td>
+            <td>{{ study.study_name }}</td>
+            <td>{{ study.study_phase }}</td>
+            <td>{{ study.sponsor_name }}</td>
+            <td>{{ study.study_description }}</td>
+            {% comment %} <td><a href="uploads">Open</a></td> {% endcomment %}
+            {% comment %} <td><a href={{uploads}}>Open</a></td> {% endcomment %}
+
+            <td>
+                <a href="{% url 'view_study' study.study_id %}" class="view-btn">View</a>
+                <a href="{% url 'edit_study' study.study_id %}" class="edit-btn">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'delete_study' study.study_id %}" class="delete-btn">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <a href="{% url 'add_study' %}" class="add-btn">Add Study</a>
+    
+</body>
+</html>

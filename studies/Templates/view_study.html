@@ -1,0 +1,68 @@
+<style>
+    /* General Body Style */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 100px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    /* Heading Style */
+    h1 {
+        font-size: 40px;
+        color: blue;
+        text-align: center;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    /* Link/Button Style */
+    a {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 19px;
+        margin: 10px 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    /* Hover Effect */
+    a:hover {
+        background-color: darkred;  /* Added hover background color */
+        text-decoration: none;
+        transform: translateY(-3px); /* Slight lift on hover */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Optional: Add styles for other elements if needed */
+    p {
+        font-size: 18px;
+        color: #333;
+        margin: 15px 0;
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Study</title>
+</head>
+<body>
+    <h1>Study Details</h1>
+    <p><strong>Name        :</strong> {{ study.study_name }}</p>
+    <p><strong>Description :</strong> {{ study.study_description }}</p>
+    <p><strong>Phase       :</strong> {{ study.study_phase }}</p>
+    <p><strong>Sponsor     :</strong> {{ study.sponsor_name }}</p>
+    {% comment %} <p><strong>file_upload:</strong> <a href="{{ study.File_Upload }}">Open</a></p> {% endcomment %}
+    <a href="{% url 'main_view' %}" >Cancel</a>
+</body>
+</html>

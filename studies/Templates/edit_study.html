@@ -1,0 +1,83 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    
+    h1 {
+        font-size: 35px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    
+    /* Form Styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+    
+    
+    
+    form input[type="text"], form textarea, form select {
+        padding: 10px;
+        font-size: 16px;
+        border: 0.5px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        width: 50%;
+    }
+    
+    form button {
+        padding: 10px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        
+    }
+    
+    /* Links */
+    a {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 6px 3px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+        
+</style>
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Study</title>
+</head>
+<body>
+    <h1>Edit Study</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+        <a href="{% url 'main_view' %}">Cancel</a>
+    </form>
+</body>
+</html>
